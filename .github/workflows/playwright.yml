@@ -17,11 +17,13 @@ jobs:
       run: npm install -g pnpm && pnpm install
     - name: Install Playwright Browsers
       run: pnpm exec playwright install --with-deps
-    - name: Run Playwright tests
+    - name: Run Higi WebPortal Test
+        env:
+          PASSWORD: ${{ secrets.ADMIN_PASSWORD }} # Using the secret
       run: pnpm exec playwright test
     - uses: actions/upload-artifact@v3
       if: always()
       with:
         name: playwright-report
         path: playwright-report/
-        retention-days: 30
+        retention-days: 5
