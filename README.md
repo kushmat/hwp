@@ -105,3 +105,14 @@ npx playwright show-report
 See slide
 
 ## API testing and n/w interception
+
+See Slide and Demo
+
+## Git tips
+
+```
+git config –-global alias.co "checkout"
+git config –-global alias.s "status"
+git config –-global alias.l "log"
+git config –-global alias.p "push"
+```
