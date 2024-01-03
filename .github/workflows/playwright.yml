@@ -1,27 +1,30 @@
 name: Higi Webportal Pipeline
-on:
+on: #Specifies when to run this GitHub Action. In this case, it runs on two events:
   push:
-    branches: [main, master]
+    branches: [main] #runs everytime someone pushes to main branch
   pull_request:
-    branches: [main, master]
+    branches: [main] #runs everytime someone creates a PR targetting main branch
 jobs:
   test:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
+    timeout-minutes: 60 #global time out setting when running test, If the job runs for more than 60 minutes, it will be terminated.
+    runs-on: ubuntu-latest #OS to run the job on. runs on the latest version of the Ubuntu operating system.
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v3 #Checks out the "actions/checkout" repository at the specified version (v3 in this case). https://github.com/actions/checkout
+      - uses: actions/setup-node@v3 #Sets up Node.js with version 18.
         with:
           node-version: 18
       - name: Install dependencies
-        run: npm install -g pnpm && pnpm install
+        run: npm install -g pnpm && pnpm install #Installs pnpm globally (npm install -g pnpm) and project dependencies (pnpm install)
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
+        run: pnpm exec playwright install --with-deps #Installs Playwright browsers and their dependencies (pnpm exec playwright install --with-deps).
       - name: Run Higi WebPortal test
-        run: pnpm exec playwright test
-      - uses: actions/upload-artifact@v3
+        run: pnpm exec playwright test # Executes the Playwright tests (pnpm exec playwright test).
+      - uses: actions/upload-artifact@v3 # Uploads the playwright-report/ directory as an artifact, named "playwright-report," with a retention period of 5 days. This directory likely contains reports or results from the Playwright tests. This uses https://github.com/actions/upload-artifact/ repository
         if: always()
         with:
           name: playwright-report
           path: playwright-report/
           retention-days: 5
+# Note on if: always(): The last step uses a conditional check (if: always()) to ensure that the artifact is uploaded even if previous steps fail.
+
+# In summary, this GitHub Actions workflow automates the testing of the Higi Webportal project on every push to the main branch and on every pull request targeting the main branch. The job includes steps to set up the environment, install dependencies, run Playwright tests, and upload test reports as artifacts. The workflow is designed to run on the latest version of the Ubuntu operating system.

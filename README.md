@@ -68,7 +68,7 @@ Let's update playwright.config.js to set base url to our webportal. Uncomment ba
 ```
  use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-     baseURL: 'https://web-dev-secure.superbuddytime.com/login',
+     baseURL: 'https://web-dev-secure.superbuddytime.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
@@ -105,3 +105,14 @@ npx playwright show-report
 See slide
 
 ## API testing and n/w interception
+
+See Slide and Demo
+
+## Git tips
+
+```
+git config –-global alias.co "checkout"
+git config –-global alias.s "status"
+git config –-global alias.l "log"
+git config –-global alias.p "push"
+```
