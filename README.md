@@ -68,7 +68,7 @@ Let's update playwright.config.js to set base url to our webportal. Uncomment ba
 ```
  use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-     baseURL: 'https://web-dev-secure.superbuddytime.com/login',
+     baseURL: 'https://web-dev-secure.superbuddytime.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
